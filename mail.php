@@ -1,13 +1,13 @@
 <?php
 if (isset($_POST['submit'])) {
 	$name = $_POST['name'];
-	$surname = $_POST['surname'];
+	$lastname = $_POST['lastname'];
 	$email = $_POST['email'];
 
 	$errorEmpty = false;
 	$errorEmail = false;
 
-	if (empty($name) || empty($surname) || empty($email)) {
+	if (empty($name) || empty($lastname) || empty($email)) {
 		echo "<span class='form-error'>Fill in all the fields!</span>";
 		$errorEmpty = true;
 	}
@@ -24,19 +24,19 @@ else {
 }
 ?>
 <script>
-	$("#mail-name, #mail-email").removeClass("input-error");
+	$("#mail-name, #mail-lastname,#mail-email").removeClass("input-error");
 
 	var errorEmpty = "<?php echo $errorEmpty; ?>";
 	var errorEmail = "<?php echo $errorEmail; ?>";
 
 	if(errorEmpty == true){
-		$("#mail-name, #mail-email").addClass("input-error");
+		$("#mail-name, #mail-lastname, #mail-email").addClass("input-error");
 	}
 	if(errorMail == true){
 		$("#mail-email").addClass("input-error");
 	}
 	if (errorEmpty==false && errorMail==false){
-		$("#mail-name, #mail-email").val("");
+		$("#mail-name, #mail-lastname, #mail-email").val("");
 	}
 </script>
 
