@@ -66,7 +66,7 @@ input[type="text"]:focus{
     transition: 0.2s ease;
 }
 
-button[type="submit"] {
+input[type="submit"] {
     width: 120px;
     height: 32px;
     background: #16a085;
@@ -84,14 +84,14 @@ button[type="submit"] {
     justify-content: center;
 }
 
-button[type="submit"]:hover,
-button[type="submit"]:focus {
+input[type="submit"]:hover,
+input[type="submit"]:focus {
     opacity: 0.8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     transition: 0.1s ease;
 }
 
-button[type="submit"]:active {
+input[type="submit"]:active {
     opacity: 1;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     transition: 0.1s ease;

@@ -16,11 +16,11 @@ if (isset($_POST['submit'])) {
 		$errorEmail = true;
 	}
 	else {
-		echo "<span class='form-success'>Everything OK !</span>";
+		echo "<span class='form-success'>Registration completed successfully</span>";
 	}
 }
 else {
-	echo "There was an error!"
+	echo "There was an error!";
 }
 ?>
 <script>
