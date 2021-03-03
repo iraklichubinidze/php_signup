@@ -39,8 +39,3 @@ else {
 		$("#mail-name, #mail-lastname, #mail-email").val("");
 	}
 </script>
-
-
-
-
-

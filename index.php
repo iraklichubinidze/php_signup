@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,20 +26,19 @@
 </head>
 
 <body>
-<form action="mail.php" method="POST">
 <div id="login-box">
     <div class="left">
-
-        <h1>Sign up form</h1> 
-        <input  id="mail-name" type="text" name="firstname" placeholder="First Name" />
-        <input  id="mail-lastname" type="text" name="lastname" placeholder="Last Name" />
-        <input  id="mail-email" type="email" name="email" placeholder="E-mail" />
-
-        <input id="mail-submit" type="submit" name="submit" value="Sign me up" />
-        <p class="form-message"></p>
-
+        <form action="mail.php" method="POST">
+            <h1>Sign up form</h1> 
+            <input  id="mail-name" type="text" name="firstname" placeholder="First Name" />
+            <input  id="mail-lastname" type="text" name="lastname" placeholder="Last Name" />
+            <input  id="mail-email" type="email" name="email" placeholder="E-mail" />
+            <!-- <input id="mail-submit" type="submit" name="submit" value="Sign me up" /> -->
+            <button type="submit" name="submit" id="mail-submit">Submit</button>
+            <p class="form-message"></p>
+        </form>
     </div>
 </div>
-</form>
+
 </body>
 </html>
