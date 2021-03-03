@@ -99,13 +99,20 @@ input[type="submit"]:active {
 
 .form-error {
     color: red;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
 }
 
 .form-success{
     color: green;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    
 }
 .input-error{
     box-shadow: 0 0 5px red;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
 }
 
 

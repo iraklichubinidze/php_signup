@@ -32,9 +32,8 @@
             <h1>Sign up form</h1> 
             <input  id="mail-name" type="text" name="firstname" placeholder="First Name" />
             <input  id="mail-lastname" type="text" name="lastname" placeholder="Last Name" />
-            <input  id="mail-email" type="email" name="email" placeholder="E-mail" />
+            <input  id="mail-email" type="text" name="email" placeholder="E-mail" />
             <input id="mail-submit" type="submit" name="submit" value="Sign me up" />
-            <!-- <button type="submit" name="submit" id="mail-submit">Submit</button> -->
             <p class="form-message"></p>
         </form>
     </div>
