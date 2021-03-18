@@ -11,7 +11,7 @@ if(isset($_POST)){
     $stmtinsert = $db->prepare($sql);
     $result = $stmtinsert->execute([$email,$firstname,$lastname]);
     if($result){
-        echo "success";
+        echo "Successfully registered";
     }else {
         echo "there were errors while saving the data";
     }

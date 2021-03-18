@@ -1,5 +1,14 @@
 <?php
     require_once('config.php');
+
+
+    // DATA VALIDATION
+    if(filter_has_var(INPUT_POST,'email')){
+        echo "DATA FOUND";
+    }else {
+        echo "NO data";
+    }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,33 +17,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Form</title>
     <link rel="icon" href="img/fingerprint-24px.svg">
-    <link rel="stylesheet" href="style/style1.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-
-
-    <div>
-
-    </div>
+<?php
+ if(isset($_POST['submit'])){
+    $name = $_POST['firstname'] . " " . $_POST['lastname'];
+    $header = "PHP TEST Verification";
+    $subject = "Mail verification";
+    $txt = "You received email";
+     mail($name,$subject,$txt,$header);
+     $header('location: index.php?mailsend');
+ }
+?>
 
     <div class="form-1">
-        <form method="post" action="index.php" class="form">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="form">
 
             <h1 class="form_title">Sign up form</h1>
 
             <div class="form_div">
-                    <input type="email" id="email" name="email" class="form_input" placeholder=" " required>
-                    <label for="email"  class="form_label">Email</label>
+                <label for="email"><b>Email:</b></label>
+                <span><?php if(isset($email_error)) echo $email_error; ?></span>
+                <input type="email" id="email" name="email" class="form_input" placeholder=" " >
             </div>
 
             <div class="form_div">
-                    <input type="text" id="firstname" name="firstname" class="form_input" placeholder=" " required>
-                    <label for="" class="form_label">First name</label>
+                <label for="" class="form_label"><b>First name</b></label>
+
+                <input type="text" id="firstname" name="firstname" class="form_input" placeholder=" ">
             </div>
 
             <div class="form_div">
-                    <input type="text" id="lastname" name="lastname" class="form_input" placeholder=" " required>
-                    <label for="" class="form_label">Last name</label>
+                <label for="" class="form_label"><b>Last name</b></label>
+
+                    <input type="text" id="lastname" name="lastname" class="form_input" placeholder=" ">
             </div>
                     <input class="form_button" name="submit" id="register" value="Sign Up" type="submit">
             </form>
@@ -43,7 +60,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script type="text/javascript">
         $(function (){
-            $('#register').click(function (e){
+            $('.form_button').click(function (e){
                 var valid = this.form.checkValidity();
 
                 if(valid){
@@ -71,8 +88,6 @@
                            })
                        }
                     });
-                } else {
-
                 }
             });
 
