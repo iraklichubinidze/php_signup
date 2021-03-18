@@ -1,6 +1,5 @@
 <?php
-//    require_once('config.php');
-//    require_once('process.php');
+    require_once 'authController.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,11 +12,11 @@
 </head>
 <body>
     <div class="form-1">
-        <form method="post" action="" class="form">
+        <form method="post" action="index.php" class="form">
             <h1 class="form_title">Sign up form</h1>
 
             <div class="form_div">
-                    <input type="email" name="mail" class="form_input" placeholder=" ">
+                    <input type="email" name="mail" class="form_input" placeholder=" " required>
                     <label for="" class="form_label">Email</label>
             </div>
             <div class="form_div">
@@ -28,7 +27,7 @@
                 <input type="text" name="lastname" class="form_input" placeholder=" ">
                 <label for="" class="form_label">Last name</label>
             </div>
-            <input class="form_button" name="create" value="Sign Up" type="submit">
+            <input class="form_button" name="submit" value="Sign Up" type="submit">
             </form>
     </div>
 
