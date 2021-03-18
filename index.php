@@ -14,22 +14,7 @@
 
 
     <div>
-        <?php
-            if(isset($_POST['submit'])){
-                $firstname = $_POST['firstname'];
-                $lastname = $_POST['lastname'];
-                $email = $_POST['email'];
 
-                $sql = "INSERT INTO users (email,firstname,lastname) VALUES(?,?,?)";
-                $stmtinsert = $db->prepare($sql);
-                $result = $stmtinsert->execute([$email,$firstname,$lastname]);
-                if($result){
-                    echo "success";
-                }else {
-                    echo "there were errors while saving the data";
-                }
-            }
-        ?>
     </div>
 
     <div class="form-1">
@@ -38,22 +23,60 @@
             <h1 class="form_title">Sign up form</h1>
 
             <div class="form_div">
-                    <input type="email" name="email" class="form_input" placeholder=" " required>
-                    <label for="email" class="form_label">Email</label>
+                    <input type="email" id="email" name="email" class="form_input" placeholder=" " required>
+                    <label for="email"  class="form_label">Email</label>
             </div>
 
             <div class="form_div">
-                    <input type="text" name="firstname" class="form_input" placeholder=" " required>
+                    <input type="text" id="firstname" name="firstname" class="form_input" placeholder=" " required>
                     <label for="" class="form_label">First name</label>
             </div>
 
             <div class="form_div">
-                    <input type="text" name="lastname" class="form_input" placeholder=" " required>
+                    <input type="text" id="lastname" name="lastname" class="form_input" placeholder=" " required>
                     <label for="" class="form_label">Last name</label>
             </div>
-                    <input class="form_button" name="submit" value="Sign Up" type="submit">
+                    <input class="form_button" name="submit" id="register" value="Sign Up" type="submit">
             </form>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script type="text/javascript">
+        $(function (){
+            $('#register').click(function (e){
+                var valid = this.form.checkValidity();
 
+                if(valid){
+                    var email     = $('#email').val();
+                    var firstname = $('#firstname').val();
+                    var lastname  = $('#lastname').val();
+
+                    e.preventDefault();
+                    $.ajax({
+                       type: 'POST',
+                       url: 'process.php',
+                       data: {email: email, firstname: firstname, lastname: lastname},
+                       success: function (data){
+                           Swal.fire({
+                               'title': 'Successful',
+                               'text':  data,
+                               'type': 'success'
+                           })
+                       },
+                       error: function (data){
+                           Swal.fire({
+                               'title': 'Errors',
+                               'text':  'There were errors while saving the data',
+                               'type': 'error'
+                           })
+                       }
+                    });
+                } else {
+
+                }
+            });
+
+        });
+    </script>
 </body>
 </html>
