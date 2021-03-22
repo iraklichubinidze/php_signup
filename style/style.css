@@ -36,3 +36,9 @@ input[type=submit]{
 input[type=submit]:hover {
     opacity: 100%;
 }
+.error_form {
+    font-size: 15px;
+    font-family: Arial;
+    color: #FF0052;
+    
+}
