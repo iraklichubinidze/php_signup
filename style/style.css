@@ -8,7 +8,14 @@ body {
     padding: 16px;
     background-color: white;
 }
-input[type=text], input[type=email] {
+.success {
+    color: green;
+}
+.errormsg{
+    font-size: 20px;
+    color: #FF0052;
+}
+input[type=text],input[type=password],input[type=email] {
     width: 100%;
     padding: 15px;
     margin-top: 5px;
@@ -35,10 +42,4 @@ input[type=submit]{
 }
 input[type=submit]:hover {
     opacity: 100%;
-}
-.error_form {
-    font-size: 15px;
-    font-family: Arial;
-    color: #FF0052;
-    
 }
