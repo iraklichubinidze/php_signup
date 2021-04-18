@@ -1,37 +1,32 @@
 <?php
-if(isset($_POST['submit'])){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $username = $_POST['uid'];
-    $pwd = $_POST['pwd'];
-    $pwdRepeat = $_POST['pwdrepeat'];
+require 'FuncsAndConstants.php';
+$errors=[];
 
+if(isset($_POST['submit'])){
     require_once '../config.php';
     require_once 'functions.inc.php';
-
-    if (emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) !== false) {
-        header("location: ../index.php?error=emptyinput");
-        exit();
+    try {
+        $dsn = new PDO('mysql:host='.$serverName.';dbname='.$db_name,$db_user,$db_pass);
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $username = $_POST['uid'];
+        $pwd = $_POST['pwd'];
+        $pwdRepeat = $_POST['pwdrepeat'];
+        $stmt = $dsn->prepare("INSERT INTO users (usersName,usersEmail,usersUid,usersPwd) 
+        VALUES(
+               :usersName,:usersEmail,:usersUid,:usersPwd
+        )");
+        $stmt->bindParam(':usersName',$name);
+        $stmt->bindParam(':usersEmail',$email);
+        $stmt->bindParam(':usersUid',$username);
+        $stmt->bindParam(':usersPwd',$pwd);
+        if($stmt->execute()){
+            echo "Successfully registered";
+        }
+    } catch (PDOException $e) {
+        echo 'Connection failed' . $e->getMessage();
     }
-    if (invalidUid($username) !== false) {
-        header("location: ../index.php?error=invaliduid");
-        exit();
-    }
-    if (invalidEmail($email) !== false) {
-        header("location: ../index.php?error=invalidEmail");
-        exit();
-    }
-    if (pwdMatch($pwd,$pwdRepeat) !== false){
-        header("location: ../index.php?error=Passwordsdontmatch");
-        exit();
-    }
-//    if (uidExists($conn,$username,$email) !== false){
-//        header("location: ../index.php?error=usernametaken");
-//        exit();
-//    }
-
-    createUser($conn, $name, $email, $username, $pwd);
 }
-else {
-    header("location: ../index.php");
+if(!$email){
+    $errors[$email] =
 }
