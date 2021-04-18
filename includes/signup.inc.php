@@ -1,32 +1,43 @@
 <?php
 require 'FuncsAndConstants.php';
+require_once 'config.php';
 $errors=[];
+$email     = '';
+$username  = '';
+$pwd       = '';
+$pwdRepeat = '';
 
-if(isset($_POST['submit'])){
-    require_once '../config.php';
-    require_once 'functions.inc.php';
-    try {
-        $dsn = new PDO('mysql:host='.$serverName.';dbname='.$db_name,$db_user,$db_pass);
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $username = $_POST['uid'];
-        $pwd = $_POST['pwd'];
-        $pwdRepeat = $_POST['pwdrepeat'];
-        $stmt = $dsn->prepare("INSERT INTO users (usersName,usersEmail,usersUid,usersPwd) 
-        VALUES(
-               :usersName,:usersEmail,:usersUid,:usersPwd
-        )");
-        $stmt->bindParam(':usersName',$name);
-        $stmt->bindParam(':usersEmail',$email);
-        $stmt->bindParam(':usersUid',$username);
-        $stmt->bindParam(':usersPwd',$pwd);
-        if($stmt->execute()){
-            echo "Successfully registered";
-        }
-    } catch (PDOException $e) {
-        echo 'Connection failed' . $e->getMessage();
+if($_SERVER['REQUEST_METHOD']==="POST")
+{
+    $email = safe_data('email');
+    $username = safe_data('username');
+    $pwd = safe_data('pwd');
+    $pwdRepeat = safe_data('pwdrepeat');
+
+    if (!$email) {
+        $errors['email'] = 'Email is required';
+    } else if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+        $errors['email'] = 'Email field must be valid address';
     }
+
+    if (!$username){
+        $errors['username'] = 'Username is required';
+    } else if(strlen($username) < 6 || strlen($username) > 16){
+        $errors['username'] = 'Username must be in between 6 and 16 characters';
+    }
+
+    if (!$pwd || !$pwdRepeat){
+        $errors['pwd'] = 'Password is required';
+    }
+    if($pwd && $pwdRepeat && strcmp($pwd,$pwdRepeat)!==0){
+        $errors['pwdRepeat'] = 'Passwords must match';
+    }
+if (empty($errors)){
+    $sql = "INSERT INTO users (email,username,password) VALUES (:email,:username,:password)";
+    $stmt = $pdo->prepare($sql);
+    $stmt -> execute(['email' => $email, 'username' => $username, 'password' => $pwd]);
+    header('Location: index.php');
+
 }
-if(!$email){
-    $errors[$email] =
+
 }
