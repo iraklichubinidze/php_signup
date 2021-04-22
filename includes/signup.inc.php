@@ -1,6 +1,7 @@
 <?php
-require 'FuncsAndConstants.php';
+require 'funcs.php';
 require_once 'config.php';
+
 $errors=[];
 $email     = '';
 $username  = '';
@@ -32,12 +33,19 @@ if($_SERVER['REQUEST_METHOD']==="POST")
     if($pwd && $pwdRepeat && strcmp($pwd,$pwdRepeat)!==0){
         $errors['pwdRepeat'] = 'Passwords must match';
     }
+
 if (empty($errors)){
     $sql = "INSERT INTO users (email,username,password) VALUES (:email,:username,:password)";
     $stmt = $pdo->prepare($sql);
     $stmt -> execute(['email' => $email, 'username' => $username, 'password' => $pwd]);
+
+    $subject = "Verification";
+    $mailFrom = $_POST['email'];
+    $message = "Hello, You have successfully registered";
+    $mailTo = "ikchubinidze18@gmail.com";
+    $headers = "From: ".$mailFrom;
+    $txt = "You have recieved an e-mail from ".$username.".\n\n".$message;
+    mail($mailTo,$subject,$txt,$headers);
     header('Location: index.php');
-
 }
-
 }
