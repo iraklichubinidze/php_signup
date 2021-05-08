@@ -46,6 +46,6 @@ if (empty($errors)){
     $headers = "From: ".$mailFrom;
     $txt = "You have recieved an e-mail from ".$username.".\n\n".$message;
     mail($mailTo,$subject,$txt,$headers);
-    header('Location: index.php');
+    header('Location: ./index.php');
 }
 }

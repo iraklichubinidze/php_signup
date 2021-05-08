@@ -10,8 +10,8 @@
     <title>Sign Up Form</title>
     <link rel="icon" href="img/fingerprint-24px.svg">
     <link rel="stylesheet" href="style/style1.css">
-    <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
-    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script src="jquery-3.6.0.js"></script>
+    
 
 </head>
 <body>

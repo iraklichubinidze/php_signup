@@ -55,6 +55,7 @@ class pdoConnection{
 }
     $conn = new pdoConnection('localhost','php_signup','root','');
 try {
+
     $pdo = new PDO('mysql:host='.$conn->getServername().';dbname='.$conn->getDbName().';', $conn->getDbUser(), $conn->getDbPass());
     $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
