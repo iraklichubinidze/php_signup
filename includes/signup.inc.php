@@ -16,19 +16,19 @@ if($_SERVER['REQUEST_METHOD']==="POST")
     $pwdRepeat = safe_data('pwdrepeat');
 
     if (!$email) {
-        $errors['email'] = 'Email is required';
+        $errors['email'] = requiredRule('Email');
     } else if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
         $errors['email'] = 'Email field must be valid address';
     }
 
     if (!$username){
-        $errors['username'] = 'Username is required';
+        $errors['username'] = requiredRule('Username');
     } else if(strlen($username) < 6 || strlen($username) > 16){
         $errors['username'] = 'Username must be in between 6 and 16 characters';
     }
 
     if (!$pwd || !$pwdRepeat){
-        $errors['pwd'] = 'Password is required';
+        $errors['pwd'] = requiredRule('Password');
     }
     if($pwd && $pwdRepeat && strcmp($pwd,$pwdRepeat)!==0){
         $errors['pwdRepeat'] = 'Passwords must match';
@@ -38,14 +38,6 @@ if (empty($errors)){
     $sql = "INSERT INTO users (email,username,password) VALUES (:email,:username,:password)";
     $stmt = $pdo->prepare($sql);
     $stmt -> execute(['email' => $email, 'username' => $username, 'password' => $pwd]);
-
-    $subject = "Verification";
-    $mailFrom = $_POST['email'];
-    $message = "Hello, You have successfully registered";
-    $mailTo = "ikchubinidze18@gmail.com";
-    $headers = "From: ".$mailFrom;
-    $txt = "You have recieved an e-mail from ".$username.".\n\n".$message;
-    mail($mailTo,$subject,$txt,$headers);
-    header('Location: ./index.php');
+    header('Location: ./index.php?success=true');
 }
 }

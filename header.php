@@ -11,11 +11,11 @@ require_once 'includes/signup.inc.php';
     <link rel="icon" href="img/fingerprint-24px.svg">
     <link rel="stylesheet" href="style/style.css">
     <script src="jquery-3.6.0.js"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 <body>
 
 <a href="index.php" style="text-decoration: none;"><h1 class="form_title">Sign up form</h1></a>
-<?php include_once 'includes/msg.php'?>
+<?php include_once 'includes/errors.php' ?>
 <br>
