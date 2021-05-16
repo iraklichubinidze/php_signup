@@ -9,7 +9,7 @@ require_once 'includes/signup.inc.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Form</title>
     <link rel="icon" href="img/fingerprint-24px.svg">
-    <link rel="stylesheet" href="style/style1.css">
+    <link rel="stylesheet" href="style/style.css">
     <script src="jquery-3.6.0.js"></script>
 
 
